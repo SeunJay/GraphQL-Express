@@ -3,6 +3,7 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLSchema,
+  GraphQLList,
   GraphQLNonNull
 } = require("graphql");
 
@@ -39,6 +40,12 @@ const RootQuery = new GraphQLObjectType({
             return customers[i];
           }
         }
+      }
+    },
+    customers:{
+      type: new GraphQLList(CustomerType),
+      resolve(parentValue, args){
+        return customers
       }
     }
   }
